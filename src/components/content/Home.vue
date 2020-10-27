@@ -1,13 +1,12 @@
 <template>
     <div>
-        <div>博客展示</div>
-        <ul v-for="blog in blogs" :key="blog.title">
-            <li><div><router-link :to="'/profile/'+ blog.id">{{blog.title}}</router-link></div>  <div>{{blog.context}}</div>   <div>{{blog.category}}</div> </li>
-        </ul>
-        <!-- <ui v-for="blog in blogs" :key="blog.title"> -->
-            <!-- <li>{{blog.title}}</li> -->
-        <!-- </ui> -->
-        <!-- <div>{{blogs.title}}{{blogs.context}}{{bolgs.category}}</div> -->
+        <div class="content">
+              <div class="post-title" v-for="blog in blogs" :key="blog.title">
+                  <!-- <article v-html="blog.context"></article> -->
+                  <h2><router-link :to="'/profile/'+ blog.id">{{blog.title}}</router-link></h2> 
+                  <article v-html="blog.contextvalue"></article>
+              </div>   
+        </div>
     </div>
 </template>
 
@@ -19,21 +18,18 @@ export default {
     name:'Home',
     data(){
         return{
-            blogs:null
+            blogs:null,
+            // defaultData: "preview"
         }
     },
     created(){
         fb.blogsCollection.get().then( qunerySnapshot =>{
               let queryBlog = []
-            qunerySnapshot.forEach(doc => { 
-                // console.log(doc.id, " => ", doc.data());
+            qunerySnapshot.forEach(doc => { ;
                 const mydata = doc.data()
-                mydata.id = doc.id
-                // console.log(mydata);               
+                mydata.id = doc.id            
                 queryBlog.push(mydata)
-                // console.log(queryBlog);
                 this.blogs = queryBlog
-                // console.log(this.blogs); 
             })
         })
     },
@@ -41,6 +37,16 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+.content{
+    margin-top: 100px;
+    margin-left: 20%;
+    width: 600px;
+}
+.post-title{
+    color: #555;
+    line-height: 1.2;
+    
+}
 
 </style>

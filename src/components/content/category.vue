@@ -1,33 +1,60 @@
 <template>
-  <div>这里的分类的内容</div>
+  <div>
+    <div  class="content-warp">
+       <h2 class="title">Categories</h2>
+       <div class="category-title">目前只有2个分类</div>
+         <div><router-link to="/CateVue">Vue</router-link></div>
+         <div><router-link to="/CateJs">JavaScript</router-link></div>
+    </div>
+  </div>
 </template>
 
 <script>
+
 export default {
-    name:'category',
-    created(){
-      const x =new Array
-      x.id = 1
-      console.log(x);
-      var person = {
-             firstName:"John",
-             lastName:"Doe",
-             age:50,
-             eyeColor:"blue"
-         };
-         for (let key in person){
-           console.log(person[key]);
-         }
-         var car = {id:"Fiat", model:500, color:"white"};
-         person.id = car.id
-        //  console.log(person.firstName);
-        //  console.log(person.id);
-        //  console.log(person);
-        //  console.log(person['id']);
+    data() {
+        return {
+        };
+    },
+    methods: {
     }
-}
+};
 </script>
 
-<style>
-    
+<style scoped>
+.content-warp{
+  height: 700px;
+  width: 580px;
+  margin-top: 100px;
+  margin-left: 30%;
+}
+.category-title{
+  text-align: center;
+  display: block;
+  line-height: 2;
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  color: #555;
+}
+
+.title{
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 50px;
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+a{
+  border-bottom-color: #ccc;
+  color: #555;
+  text-decoration: none;
+  border-bottom: 1px solid #999;
+  cursor: pointer;
+  line-height:2;
+  background-color: transparent;
+  margin: 10px 0;
+}
+a:hover{
+  border-bottom-color: black;
+}
+
 </style>

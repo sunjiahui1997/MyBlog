@@ -30,16 +30,14 @@ export default {
 
 <style scoped>
     .meau-item{
+        font-size: 14px;
         display: inline-block;
-        color:palevioletred;
+        color:black;
         padding: 0 10px;
         cursor: pointer;
-        transition: all 1s linear;
+        transition: all 0.2s linear;
     }
     .meau-item:hover{
-    background-color: #4cc9f0;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
-  box-shadow: 10px 10px 99px 6px rgba(76,201,240,1);
+        background-color: #ccc;
     }
 </style>

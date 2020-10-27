@@ -3,21 +3,28 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const category = () => import('../components/content/category')
+const Category = () => import('../components/content/Category')
 const Home = () => import('../components/content/Home')
 const About = () => import('../components/content/About')
-const commit = () => import('../components/content/commit')
-const profile = () => import('../components/content/profile')
+const Commit = () => import('../components/content/Commit')
+const Profile = () => import('../components/content/Profile')
+const Edit = () => import('views/editBlog')
 
+
+const CateVue = () => import ('views/category/CateVue')
+const ShowVue = () => import ('views/category/ShowVue')
+
+const CateJs = () => import ('views/category/CateJs')
+const ShowJs = () => import ('views/category/ShowJs')
 
 
 const routes = [
     {
     path:'/category',
-    component:category,
+    component:Category,
     meta:{
         title : 'category'
-    }
+    },
 },
 {
     path:'/main',
@@ -35,18 +42,38 @@ const routes = [
 },
 {
     path:'/profile/:id',
-    component:profile,
+    component:Profile,
     meta:{
         title: 'profile'
     }
 },
 {
     path:'/commit',
-    component:commit,
+    component:Commit,
     meta : {
         title : 'commit'
     }
-}
+},
+{
+    path:'/edit/:id',
+    component:Edit
+},
+  {
+      path:'/ShowVue/:id',
+      component:ShowVue
+  },
+  {
+      path:'/CateVue',
+      component:CateVue
+  },
+  {
+      path:'/CateJs',
+      component:CateJs
+  },
+  {
+      path:'/ShowJs/:id',
+      component:ShowJs
+  }
 ]
 
 const router = new VueRouter({

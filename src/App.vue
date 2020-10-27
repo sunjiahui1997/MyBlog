@@ -7,23 +7,23 @@
       </div>
       <meau>
         <meau-item title='首页' path = '/main'>
-          <template v-slot:item-ico><img class='' src="~assets/首页.svg" alt=""></template>
+          <template v-slot:item-ico><img class='icon' src="~assets/首页.svg" alt="" ></template>
           <template v-slot:item-text class='mean-item'>首页</template>
         </meau-item>
         <meau-item title='分类' path = '/category'>
-          <template v-slot:item-ico><img class='' src="~assets/分类.svg" alt=""></template>
+          <template v-slot:item-ico><img class='icon' src="~assets/分类.svg" alt=""></template>
           <template v-slot:item-text class='mean-item'>分类</template>
         </meau-item>
         <meau-item title='关于' path = '/About'>
-          <template v-slot:item-ico><img class='' src="~assets/我的.svg" alt=""></template>
+          <template v-slot:item-ico><img class='icon' src="~assets/我的.svg" alt=""></template>
           <template v-slot:item-text class='mean-item'>关于</template>
         </meau-item>
         <meau-item title = '归档' path = '/profile'>
-          <template v-slot:item-ico><img class='' src="~assets/课程.svg" alt=""></template>
+          <template v-slot:item-ico><img class='icon' src="~assets/课程.svg" alt=""></template>
           <template v-slot:item-text class='mean-item'>归档</template>
         </meau-item>
         <meau-item title = '写博客' path = '/commit'>
-          <template v-slot:item-ico><img class='' src="~assets/消息.svg" alt=""></template>
+          <template v-slot:item-ico><img class='icon' src="~assets/消息.svg" alt=""></template>
           <template v-slot:item-text class='mean-item'>写博客</template>
         </meau-item>
       </meau>
@@ -32,6 +32,7 @@
     <!-- <router-link to='/About'>1234</router-link> -->
     <div class="main">
        <router-view></router-view>
+        <back-top></back-top>
     </div>
   </div>
 </template>
@@ -39,12 +40,14 @@
 <script>
 import meauItem from 'components/header/meauItem'
 import meau from 'components/header/meau'
+import backTop from 'components/common/BackTop'
 
 export default {
   name: 'App',
   components: {
     meauItem,
-    meau
+    meau,
+    backTop
   }
 }
 </script>
@@ -73,14 +76,27 @@ export default {
   #blog-name{
     font-size: 1.5em;
   }
-  img{
-    width: 25px;
-    height: 25px;
+  .icon{
+    position: relative;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    color: black;
+    margin-right: 5px;
   }
   .main{
     width: 100%;
     height: 1000px;
   }
+  .header{
+    background-color: #f5f5f5;
+    opacity: 1;
+    
+  }
+  ::selection {
+  background: #262a30;
+  color: #fff;
+}
 </style>
 
 
