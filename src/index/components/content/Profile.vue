@@ -9,7 +9,7 @@
 
 <script>
 
-import * as fb from 'network/firebase'
+import * as fb from 'index/network/firebase'
 
 // import "mavon-editor/dist/css/index.css"
 

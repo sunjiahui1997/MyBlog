@@ -11,7 +11,7 @@
 
 <script>
 
-import * as fb from 'network/firebase'
+import * as fb from 'index/network/firebase'
 
 export default {
     name:'CateVue',
@@ -21,7 +21,7 @@ export default {
         }
     },
     created(){
-        fb.blogsCollection.where('category' , '==','Vue').get().then( querySnapshot =>{
+        fb.blogsCollection.where('category' , 'array-contains','Vue').get().then( querySnapshot =>{
             const queryBlog = []
             querySnapshot.forEach(doc => {
                 // console.log(doc.id);

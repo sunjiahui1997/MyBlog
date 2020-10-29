@@ -8,17 +8,22 @@ const Home = () => import('../components/content/Home')
 const About = () => import('../components/content/About')
 const Commit = () => import('../components/content/Commit')
 const Profile = () => import('../components/content/Profile')
-const Edit = () => import('views/editBlog')
+const Edit = () => import('index/views/editBlog')
 
 
-const CateVue = () => import ('views/category/CateVue')
-const ShowVue = () => import ('views/category/ShowVue')
+const CateVue = () => import ('index/views/category/CateVue')
+const ShowVue = () => import ('index/views/category/ShowVue')
 
-const CateJs = () => import ('views/category/CateJs')
-const ShowJs = () => import ('views/category/ShowJs')
+const CateJs = () => import ('index/views/category/CateJs')
+const ShowJs = () => import ('index/views/category/ShowJs')
 
 
 const routes = [
+    {
+        path:'',
+        redirect:'/main'
+        
+    },
     {
     path:'/category',
     component:Category,

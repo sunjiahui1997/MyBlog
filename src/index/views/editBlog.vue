@@ -17,7 +17,7 @@
 <script>
 
 // import * as fb from 'network/firebase.js'
-import * as fb from 'network/firebase'
+import * as fb from 'index/network/firebase'
 
 export default {
     name:'commitblogs',

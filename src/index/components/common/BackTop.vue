@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="backtop"><img v-if="btnFlag" src="~assets/箭头.svg" alt="" @click="backtop"></div>
+        <div class="backtop"><img v-if="btnFlag" src="~index/assets/箭头.svg" alt="" @click="backtop"></div>
     </div>
 </template>
 

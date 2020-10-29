@@ -12,7 +12,7 @@
 
 <script>
 
-import * as fb from 'network/firebase'
+import * as fb from 'index/network/firebase'
 
 export default {
     name:'Home',
@@ -23,6 +23,22 @@ export default {
         }
     },
     created(){
+        // var first = fb.blogsCollection.orderBy('category').limit(2)
+
+        // console.log(first);
+
+        // return first.get().then(function (documentSnapshots) {
+          // Get the last visible document
+        //   var lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1];
+        //   console.log("last", lastVisible);
+        
+          // Construct a new query starting at this document,
+          // get the next 25 cities.
+        //   var next = fb.blogsCollection.orderBy('category').startAfter(lastVisible).limit(2)
+        //   console.log(next);
+        // });
+
+
         fb.blogsCollection.get().then( qunerySnapshot =>{
               let queryBlog = []
             qunerySnapshot.forEach(doc => { ;

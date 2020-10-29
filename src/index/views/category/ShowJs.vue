@@ -7,7 +7,7 @@
 
 <script>
 
-import * as fb from 'network/firebase'
+import * as fb from 'index/network/firebase'
 
 export default {
     name:'ShowJs',
