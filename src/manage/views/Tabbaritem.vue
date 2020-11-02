@@ -9,14 +9,15 @@ export default {
     name:"tabbaritem",
     data(){
         return{
-            prop:{
-                title:String
+            props:{
+                title:String,
+                path:String
             }
         }
     },
     methods:{
     tabbarItem(){
-        // this.$route.push(this.title)
+        // this.$router.push(this.path)
     }
 },
 }

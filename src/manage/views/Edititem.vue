@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="!submmited">
-      <div class="editBlog">编辑博客</div>
+      <div class="editBlog">修改博客</div>
       <div class="title">
         标题：
         <input
@@ -33,11 +33,11 @@
         <input type="checkbox" id="PHP" value="PHP" v-model="blog.categories" />
         <label for="PHP">PHP</label>
       </div>
-      <div>发表日期：</div>
-      <button class="butcommit" @click.prevent="commitBlog">提交博客</button>
+      <div>更改日期：</div>
+      <button class="butcommit" @click.prevent="commitBlog">提交更改</button>
     </div>
     <div class="commited" v-if="submmited">
-      博客提交成功<button class="butcommit" @click="submmited = !submmited">
+      博客修改成功<button class="butcommit" @click='backstage()'>
         返回
       </button>
     </div>
@@ -53,35 +53,45 @@ export default {
   name: "commitblogs",
   data() {
     return {
-      blog: {
-        title: "",
-        context: "",
-        categories: []
-      },
       html: "",
-      submmited: false
+      submmited: false,
+      id:this.$route.params.id,
+      blog:[],
+      category:'',
+
     };
   },
+  created(){
+      fb.usersCollection.doc(fb.auth.currentUser.uid).collection('blogs').doc(this.id).get().then( doc =>{
+    // console.log(doc.data(),1234);
+    this.blog = doc.data()
+    const nihao = doc.data().categories
+    // console.log(this.category,12345);
+    this.category = nihao.toString()
+    // console.log(this.category);
+    })
+  },
   methods: {
-    change(value, render) {
-      this.html = render;
-      // console.log(this.html);
-    },
-    commitBlog() {
-      fb.usersCollection
-        .doc(fb.auth.currentUser.uid)
-        .collection("blogs")
-        .add({
-          createdOn: new data(),
-          title: this.blog.title,
-          context: this.blog.context,
-          contextvalue : this.html,
-          categories: this.blog.categories
-        });
-        this.submmited = true
-    }
+  change(value, render) {
+    this.html = render;
+    // console.log(this.html);
+  },
+  commitBlog(){
+      fb.usersCollection.doc(fb.auth.currentUser.uid).collection('blogs').doc(this.id).update({
+          title:this.blog.title,
+          context:this.blog.context,
+          contextvalue:this.html,
+          
+          categories: fb.hhh.arrayUnion(this.category)
+        //   categories: fb.FieldValue.arrayUnion(this.blog.categories.toString())
+      })
+      this.submmited = true
+  },
+  backstage(){
+    this.$router.push('/backstage/editblog')
+},
   }
-};
+}
 </script>
 
 <style scoped>

@@ -1,8 +1,9 @@
 <template>
  <div>
      <tabbar>
-         <tabbar-item title = '写博客'><router-link to='/addblog'>写博客</router-link></tabbar-item>
-         <tabbar-item title = '编辑博客'>编辑博客</tabbar-item>
+         <tabbar-item  class ='title' title = '写博客' path ='addblog'><router-link to ='/backstage/addblog'>写博客</router-link></tabbar-item>
+         <tabbar-item  class ='title' title = '编辑博客' path ='editblog'><router-link to ='/backstage/editblog'>编辑博客</router-link></tabbar-item>
+         <router-view></router-view>
          <div>{{userProfile.name}}</div>
          <!-- <tabbar-item>写博客</tabbar-item> -->
      </tabbar>
@@ -24,10 +25,31 @@ export default {
     },
     computed:{
         ...mapState(['userProfile'])
+    },
+    methods:{
+        addblog(){
+            // this.$router.push('/addblog')
+        }
     }
 }
 </script>
 
-<style>
+<style scoped>
+.title{
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
 
+a{
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+a:hover{
+    background-color: #555;
+    color: white;
+}
 </style>

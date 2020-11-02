@@ -34,7 +34,7 @@ export default new Vuex.Store({
 
       commit('setUserProfile', userProfile.data())
       if(router.currentRoute.path === '/signup'){
-        router.push('/')
+        router.push('/backstage')
       }
     },
     async commitBlog({commit},blog){

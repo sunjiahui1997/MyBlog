@@ -6,6 +6,8 @@ Vue.use(Router)
 const addblog = () => import ('./views/Addblog')
 const signup = () => import ('./views/Signup')
 const backstage =() => import ('./views/Backstage')
+const editblog =() => import ('./views/Editblog')
+const edititem = () =>import ('./views/Edititem')
 
 export default new Router({
   mode: 'history',
@@ -23,8 +25,22 @@ export default new Router({
       component:signup
     },
     {
-      path:'/',
-      component:backstage
+      path:'/backstage',
+      component:backstage,
+      children:[
+        {
+          path:'addblog',
+          component:addblog
+        },
+        {
+          path:'editblog',
+          component:editblog
+        },
+        {
+          path:'edititem/:id',
+          component:edititem
+        }
+      ]
     }
   ]
 })

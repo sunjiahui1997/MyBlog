@@ -19,6 +19,8 @@ firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 const auth = firebase.auth()
 
+const hhh = firebase.firestore.FieldValue
+
 // collection references
 const usersCollection = db.collection('users')
 const blogsCollection = db.collection('blogs')
@@ -27,6 +29,7 @@ const blogsCollection = db.collection('blogs')
 export {
   db,
   auth,
+  hhh,
   blogsCollection,
   usersCollection,
 }
