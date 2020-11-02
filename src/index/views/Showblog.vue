@@ -1,19 +1,22 @@
 <template>
   <div>
-    <div>{{ blog.title }}</div>
-    <div v-html="blog.contextvalue"></div>
+    <div>博客的展示</div>
+    <article class="markdown-body" v-html="blog.contextvalue"></article>
+    <!-- <button><router-link :to="'/edit/'+id">编辑博客</router-link></button> -->
   </div>
 </template>
 
 <script>
 import * as fb from "index/network/firebase";
 
+// import "mavon-editor/dist/css/index.css"
+
 export default {
-  name: "ShowVue",
+  name: "profile",
   data() {
     return {
       id: this.$route.params.id,
-      blog: ""
+      blog: []
     };
   },
   created() {
@@ -24,11 +27,12 @@ export default {
       .get()
       .then(doc => {
         if (doc.exists) {
-          console.log(doc.data());
+          // console.log(doc.data());
           this.blog = doc.data();
         }
       });
-  }
+  },
+  methods: {}
 };
 </script>
 

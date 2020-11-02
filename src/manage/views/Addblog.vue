@@ -81,6 +81,7 @@ export default {
           categories: this.blog.categories
         });
         this.submmited = true
+        this.blog =''
     }
   }
 };
@@ -89,7 +90,7 @@ export default {
 <style scoped>
 .context{
   position: relative;
-  top: -60px;
+  top: -99px;
 }
 .editBlog {
   display: inline-block;
@@ -147,11 +148,9 @@ input {
   color:white;
 }
 .commited {
-  display: flex;
-  width: 300px;
-  height: 100px;
-  white-space: nowrap;
-  background-color: #aaa;
+  position: relative;
+  top: 200px;
+  display: block;
 }
 input {
   width: 30px;

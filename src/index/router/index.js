@@ -6,10 +6,9 @@ Vue.use(VueRouter)
 const Category = () => import('../components/content/Category')
 const Home = () => import('../components/content/Home')
 const About = () => import('../components/content/About')
-const Commit = () => import('../components/content/Commit')
 const Profile = () => import('../components/content/Profile')
 const Edit = () => import('index/views/editBlog')
-
+const Showblog = () =>import ('index/views/Showblog')
 
 const CateVue = () => import ('index/views/category/CateVue')
 const ShowVue = () => import ('index/views/category/ShowVue')
@@ -46,17 +45,11 @@ const routes = [
     }
 },
 {
-    path:'/profile/:id',
-    component:Profile,
+    path:'/showblog/:id',
+    component:Showblog,
+    name:'showblog',
     meta:{
-        title: 'profile'
-    }
-},
-{
-    path:'/commit',
-    component:Commit,
-    meta : {
-        title : 'commit'
+        title: 'showblog'
     }
 },
 {
@@ -78,6 +71,10 @@ const routes = [
   {
       path:'/ShowJs/:id',
       component:ShowJs
+  },
+  {
+      path:'/profile',
+      component:Profile
   }
 ]
 

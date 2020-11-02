@@ -1,19 +1,19 @@
 <template>
   <div>
-    <div>标题</div>
-    <div>{{ nihao | simplify }}</div>
-    <div class="boke" v-for="blogs in blog" :key="blogs.title">
-      <div>
-        <div>博客标题：{{ blogs.title }}</div>
-        <div v-html="blogs.contextvalue"></div>
-        <hr id="xian" />
-      </div>
-      <div class="hh">
-        <router-link :to="'/backstage/edititem/' + blogs.id">
-          <button class="title">修改</button></router-link
-        >
-        <button class="title" @click="deletaBlog(blogs.id)">删除</button>
-      </div>
+    <div class="context">
+      <div class="boke" v-for="blogs in blog" :key="blogs.title">
+  <div>
+    <div>博客标题：{{ blogs.title }}</div>
+    <div v-html="blogs.contextvalue"></div>
+    <hr id="xian" />
+  </div>
+  <div class="hh">
+    <router-link :to="'/backstage/edititem/' + blogs.id">
+      <button class="title">修改</button></router-link
+    >
+    <button class="title" @click="deletaBlog(blogs.id)">删除</button>
+  </div>
+</div>
     </div>
   </div>
 </template>
@@ -66,7 +66,6 @@ export default {
             console.log(error);
           });
       }else{
-        
       }
     }
   }
@@ -108,5 +107,9 @@ hr {
   position: relative;
   top: -10px;
   width: 500px;
+}
+.context{
+  position: relative;
+  top: -80px;
 }
 </style>

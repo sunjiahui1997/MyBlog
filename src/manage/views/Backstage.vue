@@ -60,6 +60,6 @@ a:hover{
 }
 #view{
     position: relative;
-    left: 100px;
+    left: 50px;
 }
 </style>

@@ -30,12 +30,6 @@
             /></template>
             <template v-slot:item-text class="mean-item">归档</template>
           </meau-item>
-          <meau-item title="写博客" path="/commit">
-            <template v-slot:item-ico
-              ><img class="icon" src="~index/assets/消息.svg" alt=""
-            /></template>
-            <template v-slot:item-text class="mean-item">写博客</template>
-          </meau-item>
         </meau>
         <a class="back" href="/manage.html">管理后台</a>
       </div>
@@ -43,6 +37,7 @@
     <!-- <router-link to='/About'>1234</router-link> -->
     <div class="main">
       <router-view></router-view>
+             <img class='guofu' src="~index/assets/3.jpg" alt="">
       <back-top></back-top>
     </div>
   </div>
@@ -119,6 +114,13 @@ body {
   font-size: 14px;
   position: relative;
   left: 500px;
+}
+.guofu{
+  width: 120px;
+  height: 150px;
+  position: absolute ;
+  left: 50px;
+  top: 100px;
 }
 </style>
 

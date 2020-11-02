@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <!-- <sign-up v-if='logIn' @login='login()' ></sign-up> -->
-    <div>{{time | day}}</div>
-    <div>{{time1}}</div>
+    <img class="img" src="./assets/2.jpg" alt="" href="/main">
   <router-view></router-view>
   <div><router-link to="/signup">登录界面</router-link></div>
  <a href="/main">回到博客</a>
@@ -50,9 +49,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 body{
   width: 100%;
   height: 100%;
+  opacity: 1;
+}
+::selection {
+  background: #262a30;
+  color: #fff;
+}
+.img{
+  width: 200px;
+  height: 110px;
 }
 </style>
