@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div v-if="!submmited">
+    <div class="context">
+          <div v-if="!submmited">
       <div class="editBlog">编辑博客</div>
       <div class="title">
         标题：
@@ -33,7 +34,6 @@
         <input type="checkbox" id="PHP" value="PHP" v-model="blog.categories" />
         <label for="PHP">PHP</label>
       </div>
-      <div>发表日期：</div>
       <button class="butcommit" @click.prevent="commitBlog">提交博客</button>
     </div>
     <div class="commited" v-if="submmited">
@@ -42,6 +42,7 @@
       </button>
     </div>
     <a href="/manage.html">回到后台主页</a>
+    </div>
   </div>
 </template>
 
@@ -72,7 +73,8 @@ export default {
         .doc(fb.auth.currentUser.uid)
         .collection("blogs")
         .add({
-          createdOn: new data(),
+          createdOn: new Date(),
+          updateOn :new Date(),
           title: this.blog.title,
           context: this.blog.context,
           contextvalue : this.html,
@@ -85,24 +87,28 @@ export default {
 </script>
 
 <style scoped>
+.context{
+  position: relative;
+  top: -60px;
+}
 .editBlog {
   display: inline-block;
   font-size: 40px;
   line-height: 70px;
   margin: 20px 0;
-  padding-left: 200px;
+  padding-left: 30px;
 }
 .title {
   display: block;
   margin-bottom: 20px;
-  margin-left: 200px;
+  margin-left: 30px;
   font-size: 20px;
   /* font-family: 'Times New Roman', Times, serif;   */
 }
 .title1 {
   display: block;
   margin-bottom: 20px;
-  margin-left: 200px;
+  margin-left: 30px;
   margin-top: 30px;
   font-size: 20px;
 }
@@ -124,7 +130,7 @@ input {
 }
 .butcommit {
   display: inline-block;
-  color: #fff;
+  color: rgb(8, 8, 8);
   font-weight: 700;
   font-size: 16px;
   text-align: center;
@@ -132,13 +138,13 @@ input {
   text-decoration: none;
   border: 1px solid #aaa;
   border-radius: 5px;
-  background-color: #8ac007;
+  background-color: #f1f1f1;
   white-space: nowrap;
 }
 .butcommit:hover {
   cursor: pointer;
-  background-color: honeydew;
-  color: #8ac007;
+  background-color: black;
+  color:white;
 }
 .commited {
   display: flex;

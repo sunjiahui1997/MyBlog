@@ -1,9 +1,11 @@
 <template>
  <div>
-     <tabbar>
-         <tabbar-item  class ='title' title = '写博客' path ='addblog'><router-link to ='/backstage/addblog'>写博客</router-link></tabbar-item>
-         <tabbar-item  class ='title' title = '编辑博客' path ='editblog'><router-link to ='/backstage/editblog'>编辑博客</router-link></tabbar-item>
-         <router-view></router-view>
+     <tabbar class='content'>
+         <div>
+             <tabbar-item  class ='title' title = '写博客' path ='addblog'><router-link to ='/backstage/addblog'>写博客</router-link></tabbar-item>
+          <tabbar-item  class ='title' title = '编辑博客' path ='editblog'><router-link to ='/backstage/editblog'>编辑博客</router-link></tabbar-item>
+         </div>
+         <router-view id='view'></router-view>
          <div>{{userProfile.name}}</div>
          <!-- <tabbar-item>写博客</tabbar-item> -->
      </tabbar>
@@ -35,7 +37,11 @@ export default {
 </script>
 
 <style scoped>
+.content{
+    display: flex;
+}
 .title{
+    display: block;
     margin: 0;
     padding: 0;
     width: 200px;
@@ -51,5 +57,9 @@ a{
 a:hover{
     background-color: #555;
     color: white;
+}
+#view{
+    position: relative;
+    left: 100px;
 }
 </style>

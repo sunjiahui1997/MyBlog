@@ -3,7 +3,7 @@
     <div><img src="../assets/1.jpg" alt=""></div>
     <div id="login_frame" >
       <form action="" @submit.prevent  v-if="showsignup" >
-        <h1 id="title">博客后台</h1>
+        <h1 id="title">iBlog</h1>
         <div>
           <label class="label_input" for="email1">邮箱</label>
             <input
@@ -180,7 +180,7 @@ img{
     padding: 0 28px;
 }
 #title{
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  font-family:'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 </style>

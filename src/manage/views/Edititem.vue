@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div v-if="!submmited">
+    <div class="context">
+          <div v-if="!submmited">
       <div class="editBlog">修改博客</div>
       <div class="title">
         标题：
@@ -42,6 +43,7 @@
       </button>
     </div>
     <a href="/manage.html">回到后台主页</a>
+    </div>
   </div>
 </template>
 
@@ -81,7 +83,7 @@ export default {
           title:this.blog.title,
           context:this.blog.context,
           contextvalue:this.html,
-          
+          updataOn: new Date(),
           categories: fb.hhh.arrayUnion(this.category)
         //   categories: fb.FieldValue.arrayUnion(this.blog.categories.toString())
       })
@@ -95,24 +97,28 @@ export default {
 </script>
 
 <style scoped>
+.context{
+  position: relative;
+  top: -60px;
+}
 .editBlog {
   display: inline-block;
   font-size: 40px;
   line-height: 70px;
   margin: 20px 0;
-  padding-left: 200px;
+  padding-left: 30px;
 }
 .title {
   display: block;
   margin-bottom: 20px;
-  margin-left: 200px;
+  margin-left: 30px;
   font-size: 20px;
   /* font-family: 'Times New Roman', Times, serif;   */
 }
 .title1 {
   display: block;
   margin-bottom: 20px;
-  margin-left: 200px;
+  margin-left: 30px;
   margin-top: 30px;
   font-size: 20px;
 }
@@ -134,7 +140,7 @@ input {
 }
 .butcommit {
   display: inline-block;
-  color: #fff;
+  color: black;
   font-weight: 700;
   font-size: 16px;
   text-align: center;
@@ -142,13 +148,13 @@ input {
   text-decoration: none;
   border: 1px solid #aaa;
   border-radius: 5px;
-  background-color: #8ac007;
+  background-color:#f1f1f1;
   white-space: nowrap;
 }
 .butcommit:hover {
   cursor: pointer;
-  background-color: honeydew;
-  color: #8ac007;
+  background-color: black;
+  color: white;
 }
 .commited {
   display: flex;

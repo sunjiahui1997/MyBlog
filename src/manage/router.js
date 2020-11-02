@@ -14,7 +14,7 @@ export default new Router({
   routes: [
     {
       path:'/manage.html',
-      redirect:'/signup'
+      redirect:'/backstage'
     },
     {
       path:'/addblog',

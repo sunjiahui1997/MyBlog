@@ -1,20 +1,30 @@
 <template>
   <div id="app">
     <!-- <sign-up v-if='logIn' @login='login()' ></sign-up> -->
+    <div>{{time | day}}</div>
+    <div>{{time1}}</div>
   <router-view></router-view>
+  <div><router-link to="/signup">登录界面</router-link></div>
  <a href="/main">回到博客</a>
   </div>
 </template>
 
 <script>
 
+import moment from 'moment'
 
 export default {
   name:'App',
   data(){
     return{
       logIn:true,
+      time: new Date(),
+      time1:''
     }
+  },
+  created(){
+    let now =moment().format("YYYY-M-D")
+    this.time1 =now
   },
   components:{
   },
@@ -28,6 +38,13 @@ export default {
   computed:{
     count(){
       return this.$store.state.userProfile
+    }
+  },
+  filters:{
+    day(val){
+      if(!val){return'-'}
+      let data = moment(val)
+      return data.format("YYYY-M-D")
     }
   }
 }

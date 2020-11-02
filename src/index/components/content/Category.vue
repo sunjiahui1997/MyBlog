@@ -42,19 +42,40 @@ export default {
   font-weight: 400;
   line-height: 50px;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  cursor: pointer;
+}
+.title:before{
+  content: " ";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
 }
 a{
-  border-bottom-color: #ccc;
+  /* border-bottom-color: #ccc; */
   color: #555;
   text-decoration: none;
-  border-bottom: 1px solid #999;
+  border-bottom: #CCC 1px solid;
   cursor: pointer;
   line-height:2;
   background-color: transparent;
   margin: 10px 0;
 }
-a:hover{
-  border-bottom-color: black;
+.title:after{
+  content: ' ';
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  height: 2px;
+  color: #555;
+  transition: all .2s;
 }
-
+.title:hover:after{
+  left: 0%;
+  width: 100%;
+}
+a:hover{
+  border-bottom: 1px black solid;
+}
 </style>
