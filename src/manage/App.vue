@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <!-- <sign-up v-if='logIn' @login='login()' ></sign-up> -->
-    <img class="img" src="./assets/2.jpg" alt="" href="/main">
   <router-view></router-view>
   <div><router-link to="/signup">登录界面</router-link></div>
  <a href="/main">回到博客</a>
@@ -58,9 +57,5 @@ body{
 ::selection {
   background: #262a30;
   color: #fff;
-}
-.img{
-  width: 200px;
-  height: 110px;
 }
 </style>

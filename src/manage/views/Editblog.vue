@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="context">
+      <!-- {{this.blogcontext}} -->
       <div class="boke" v-for="blogs in blog" :key="blogs.title">
   <div>
-    <div>博客标题：{{ blogs.title }}</div>
-    <div v-html="blogs.contextvalue"></div>
-    <hr id="xian" />
+    <h3>博客标题：{{ blogs.title }}</h3>
+    <div v-html="$options.filters.msg(blogs.contextvalue)"></div>
   </div>
   <div class="hh">
     <router-link :to="'/backstage/edititem/' + blogs.id">
@@ -26,8 +26,7 @@ export default {
   data() {
     return {
       blog: [],
-      nihao:
-        "假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容假内容"
+      blogcontext:'',
     };
   },
   created() {
@@ -42,12 +41,16 @@ export default {
           mydata.id = doc.id;
           queryblog.push(mydata);
           this.blog = queryblog;
+          // this.blogcontext = this.blog.context
         });
       });
   },
   filters: {
     simplify(val) {
       return val.slice(1, 45) + "...";
+    },
+    msg(msg){
+      return msg.slice(0,50)
     }
   },
   methods: {
@@ -75,12 +78,23 @@ export default {
 <style scoped>
 .boke {
   display: flex;
+    color: #555;
+  line-height: 1.2;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.06), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 -1px 0.5px 0 rgba(0, 0, 0, 0.09);
+  border-radius: initial;
+  padding: 10px 20px;
+  margin-bottom: 10px;
 }
 .hh {
   display: flex;
-  position: relative;
-  left: 200px;
-  top: 30px;
+  /* position: relative; */
+  /* left: 200px; */
+  /* top: 30px; */
+  position: absolute;
+  right:10px;
+  margin-top: 20px;
 }
 .title {
   display: inline-block;

@@ -99,7 +99,7 @@ export default {
 <style scoped>
 .context{
   position: relative;
-  top: -99px;
+  top: -150px;
 }
 .editBlog {
   display: inline-block;

@@ -1,5 +1,7 @@
 <template>
  <div>
+     <img class="img" src="../assets/2.jpg" alt="" href="/main">
+     <!-- <img class='img2' src="../assets/4.jpg" alt=""> -->
      <tabbar class='content'>
          <div>
              <tabbar-item  class ='title' title = '写博客' path ='addblog'><router-link to ='/backstage/addblog'>写博客</router-link></tabbar-item>
@@ -61,5 +63,17 @@ a:hover{
 #view{
     position: relative;
     left: 50px;
+}
+.img{
+  width: 200px;
+  height: 110px;
+}
+.img2{
+    position: absolute;
+    z-index: -1;
+    opacity: 0.8;
+    width: 50%;
+    height: 50%;
+    left: 1000px;
 }
 </style>
