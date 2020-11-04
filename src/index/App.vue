@@ -114,6 +114,13 @@ body {
   font-size: 14px;
   position: relative;
   left: 500px;
+  color: #262a30;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  line-height: 2;
+}
+.back:hover{
+  background-color:#ccc;
 }
 .guofu{
   width: 120px;

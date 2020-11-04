@@ -1,14 +1,16 @@
 <template>
  <div>
-     <img class="img" src="../assets/2.jpg" alt="" href="/main">
+     <img class="img" src="~manage/assets/2.jpg" alt="" href="/main">
      <!-- <img class='img2' src="../assets/4.jpg" alt=""> -->
      <tabbar class='content'>
          <div>
              <tabbar-item  class ='title' title = '写博客' path ='addblog'><router-link to ='/backstage/addblog'>写博客</router-link></tabbar-item>
           <tabbar-item  class ='title' title = '编辑博客' path ='editblog'><router-link to ='/backstage/editblog'>编辑博客</router-link></tabbar-item>
+          <tabbar-item  class ='title'><router-link to ='/signup'>登录界面</router-link></tabbar-item>
+          <tabbar-item  class ='title' title = '编辑博客' ><a href="/main">回到博客</a></tabbar-item>
+          <tabbar-item  class ='title' title = '编辑博客' ><a @click='logout'>退出登录</a></tabbar-item>
          </div>
          <router-view id='view'></router-view>
-         <div>{{userProfile.name}}</div>
          <!-- <tabbar-item>写博客</tabbar-item> -->
      </tabbar>
 </div> 
@@ -33,7 +35,15 @@ export default {
     methods:{
         addblog(){
             // this.$router.push('/addblog')
-        }
+        },
+        logout(){
+            var r = confirm('确定退出？')
+            if(r == true){
+                this.$store.dispatch('logout')
+            }else{
+
+            }
+        },
     }
 }
 </script>
@@ -55,6 +65,7 @@ a{
     color: #000;
     padding: 8px 16px;
     text-decoration: none;
+    cursor: pointer;
 }
 a:hover{
     background-color: #555;

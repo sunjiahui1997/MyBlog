@@ -2,8 +2,6 @@
   <div id="app">
     <!-- <sign-up v-if='logIn' @login='login()' ></sign-up> -->
   <router-view></router-view>
-  <div><router-link to="/signup">登录界面</router-link></div>
- <a href="/main">回到博客</a>
   </div>
 </template>
 

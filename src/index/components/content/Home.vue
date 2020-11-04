@@ -1,6 +1,5 @@
 <template>
   <div>
-      <link href="https://cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet">
     <div class="content">
       <div class="post-title" v-for="blog in blogs" :key="blog.title">
         <!-- <article v-html="blog.context"></article> -->
@@ -11,7 +10,7 @@
         </h2>
         <div class="title1">
           Posted On
-          <div class="time">{{ blog.createdOn | day }}</div>
+          <div class="time">{{ blog.createdOn.seconds | day }}</div>
         </div>
         <article  class="markdown-body" v-html="$options.filters.msg(blog.contextvalue)"></article>
         <button class="but1">
@@ -20,13 +19,12 @@
           >
         </button>
       </div>
-      <button @click="loadmore">下一页</button>
+      <!-- <button @click="loadmore">下一页</button> -->
     </div>
   </div>
 </template>
 
 <script>
-import moment from "moment";
 import * as fb from "index/network/firebase";
 
 export default {
@@ -34,8 +32,8 @@ export default {
   data() {
     return {
       blogs: "",
-      moreblog: "",
-      lastblog: "",
+      // moreblog: "",
+      // lastblog: "",
       // defaultData: "preview"
     };
   },
@@ -59,10 +57,10 @@ export default {
       .doc("AzzXqCkJ7fQAVsMnTKsvisjYXeh1")
       .collection("blogs")
       .orderBy("createdOn")
-      .limit(2)
+      // .limit(2)
       .get()
       .then(qunerySnapshot => {
-        var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
+        // var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
         let queryBlog = [];
         qunerySnapshot.forEach(doc => {
           const mydata = doc.data();
@@ -70,8 +68,7 @@ export default {
           queryBlog.push(mydata);
           this.blogs = queryBlog;
         });
-        console.log(lastVisible.data(), "=========");
-        this.lastblog = lastVisible;
+        // this.lastblog = lastVisible;
       });
   },
   filters: {
@@ -79,35 +76,40 @@ export default {
       if (!val) {
         return "-";
       }
-      let data = val.toDate();
-      return moment(data).format("YYYY-M-D");
+     var now = new Date(val*1000)
+     var year = now.getFullYear()
+     var month = now.getMonth()+1
+     var day = now.getDate()
+     var time = year + '-' + month + '-' + day
+     return time
     },
     msg(msg){
         return msg.slice(0,300) + '...'
     }
   },
   methods: {
-    loadmore() {
-      fb.usersCollection
-        .doc("AzzXqCkJ7fQAVsMnTKsvisjYXeh1")
-        .collection("blogs")
-        .orderBy("createdOn")
-        .startAfter(this.lastblog)
-        .limit(2)
-        .get()
-        .then(qunerySnapshot => {
-          var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
-          let queryBlog = [];
-          qunerySnapshot.forEach(doc => {
-            const mydata = doc.data();  
-            mydata.id = doc.id;
-            queryBlog.push(mydata);
-            this.blogs = queryBlog;
+    //加载更多的代码，由于firebase不是基于偏移，所以没法进行分页
+    // loadmore() {
+      // fb.usersCollection
+        // .doc("AzzXqCkJ7fQAVsMnTKsvisjYXeh1")
+        // .collection("blogs")
+        // .orderBy("createdOn")
+        // .startAfter(this.lastblog)
+        // .limit(2)
+        // .get()
+        // .then(qunerySnapshot => {
+          // var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
+          // let queryBlog = [];
+          // qunerySnapshot.forEach(doc => {
+            // const mydata = doc.data();  
+            // mydata.id = doc.id;
+            // queryBlog.push(mydata);
+            // this.blogs = queryBlog;
             // this.blogs.push(...this.moreblog)
-          });
-          this.lastblog = lastVisible;
-        });
-    }
+          // });
+          // this.lastblog = lastVisible;
+        // });
+    // }
   }
 };
 </script>

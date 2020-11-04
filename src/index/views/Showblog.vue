@@ -1,20 +1,17 @@
 <template>
   <div>
-    <link href="https://cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet">
     <div class="blog">
       <div class="title">{{ blog.title }}</div>
-<div class="time">Post On  {{ blog.createdOn | day }}</div>
-<article  class="markdown-body" v-html="blog.contextvalue"></article>
+      <div class="time">Post On {{ blog.createdOn | day}}</div>
+      <article class="markdown-body" v-html="blog.contextvalue"></article>
     </div>
   </div>
 </template>
 
 <script>
-
 import * as fb from "index/network/firebase";
-import moment from "moment";
 
-import "mavon-editor/dist/css/index.css"
+import "mavon-editor/dist/css/index.css";
 
 export default {
   name: "profile",
@@ -32,7 +29,6 @@ export default {
       .get()
       .then(doc => {
         if (doc.exists) {
-          // console.log(doc.data());
           this.blog = doc.data();
         }
       });
@@ -43,31 +39,36 @@ export default {
       if (!val) {
         return "-";
       }
-      const x = val.toDate();
-      return moment(x).format("YYYY-M-D");
+      const h = val.seconds * 1000
+      var now = new Date(h);
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var day = now.getDate();
+      var time = year + "-" + month + "-" + day;
+      return time;
     }
   }
 };
 </script>
 
 <style scoped>
-.blog{
+.blog {
   position: relative;
   left: 300px;
   top: 50px;
   width: 700px;
 }
-.title{
+.title {
   text-align: center;
   font-size: 26px;
   font-weight: 400;
 }
-.time{
+.time {
   text-align: center;
   font-size: 9px;
-  margin:10px 0px 30px 0;
+  margin: 10px 0px 30px 0;
 }
 /* .markdown-body{ */
-  /* font-size: 14px; */
+/* font-size: 14px; */
 /* } */
 </style>

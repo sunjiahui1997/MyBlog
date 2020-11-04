@@ -37,8 +37,13 @@ export default new Vuex.Store({
         router.push('/backstage')
       }
     },
-    async commitBlog({commit},blog){
-
-    }
+    async logout({commit}){
+        // log user out
+     await fb.auth.signOut()
+     // clear user data from state
+     commit('setUserProfile', {})
+     // redirect to login view
+     router.push('/signup')
+       }
   }
 })

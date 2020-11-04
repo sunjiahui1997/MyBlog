@@ -1,6 +1,5 @@
 <template>
   <div>
-    <link href="https://cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet">
     <div class="blog">
       <div class="title">{{ blog.title }}</div>
       <div class="time">Post On {{ blog.createdOn | day }}</div>
@@ -15,7 +14,6 @@
 
 <script>
 import * as fb from "index/network/firebase";
-import moment from "moment";
 
 export default {
   name: "ShowVue",
@@ -33,7 +31,6 @@ export default {
       .get()
       .then(doc => {
         if (doc.exists) {
-          console.log(doc.data());
           this.blog = doc.data();
         }
       });
@@ -43,8 +40,13 @@ export default {
      if (!val) {
        return "-";
      }
-     const x = val.toDate();
-     return moment(x).format("YYYY-M-D");
+       const h = val.seconds * 1000
+  var now = new Date(h);
+  var year = now.getFullYear();
+  var month = now.getMonth() + 1;
+  var day = now.getDate();
+  var time = year + "-" + month + "-" + day;
+  return time;
    }
  }
 };
