@@ -36,7 +36,6 @@ export default {
           mydata.id = doc.id;
           queryBlog.push(mydata);
           this.blog = queryBlog;
-          console.log(this.blog);
         });
       });
   }

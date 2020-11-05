@@ -28,7 +28,7 @@
             <template v-slot:item-ico
               ><img class="icon" src="~index/assets/课程.svg" alt=""
             /></template>
-            <template v-slot:item-text class="mean-item">归档</template>
+            <template v-slot:item-text class="mean-item">留言</template>
           </meau-item>
         </meau>
         <a class="back" href="/manage.html">管理后台</a>

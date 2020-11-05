@@ -74,7 +74,6 @@ export default {
         .collection("blogs")
         .add({
           createdOn: new Date(),
-          updateOn :new Date(),
           title: this.blog.title,
           context: this.blog.context,
           contextvalue : this.html,

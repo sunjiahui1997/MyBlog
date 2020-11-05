@@ -1,7 +1,6 @@
 <template>
  <div>
      <img class="img" src="~manage/assets/2.jpg" alt="" href="/main">
-     <!-- <img class='img2' src="../assets/4.jpg" alt=""> -->
      <tabbar class='content'>
          <div>
              <tabbar-item  class ='title' title = '写博客' path ='addblog'><router-link to ='/backstage/addblog'>写博客</router-link></tabbar-item>

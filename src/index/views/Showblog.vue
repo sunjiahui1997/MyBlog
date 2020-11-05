@@ -2,7 +2,7 @@
   <div>
     <div class="blog">
       <div class="title">{{ blog.title }}</div>
-      <div class="time">Post On {{ blog.createdOn | day}}</div>
+      <div class="time">Post On {{ blog.createdOn | day }} | UpdateOn : {{blog.updateOn | day}}</div>
       <article class="markdown-body" v-html="blog.contextvalue"></article>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
       .get()
       .then(doc => {
         if (doc.exists) {
-          this.blog = doc.data();
+          // this.blog = doc.data();
         }
       });
   },
@@ -39,7 +39,7 @@ export default {
       if (!val) {
         return "-";
       }
-      const h = val.seconds * 1000
+      const h = val.seconds * 1000;
       var now = new Date(h);
       var year = now.getFullYear();
       var month = now.getMonth() + 1;

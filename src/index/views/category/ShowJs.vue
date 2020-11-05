@@ -2,7 +2,7 @@
   <div>
     <div class="blog">
       <div class="title">{{ blog.title }}</div>
-      <div class="time">Post On {{ blog.createdOn | day }}</div>
+      <div class="time">Post On {{ blog.createdOn | day }} | UpdateOn : {{blog.updateOn | day }}</div>
       <article
         class="markdown-body"
         v-html="blog.contextvalue"

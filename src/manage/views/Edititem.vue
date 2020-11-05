@@ -83,8 +83,8 @@ export default {
           title:this.blog.title,
           context:this.blog.context,
           contextvalue:this.html,
-          updataOn: new Date(),
-          categories: fb.hhh.arrayUnion(this.category)
+          updateOn: new Date(),
+          // categories: fb.hhh.arrayUnion(this.category)
         //   categories: fb.FieldValue.arrayUnion(this.blog.categories.toString())
       })
       this.submmited = true
@@ -92,7 +92,7 @@ export default {
   backstage(){
     this.$router.push('/backstage/editblog')
 },
-  }
+  },
 }
 </script>
 
@@ -162,6 +162,8 @@ input {
   height: 100px;
   white-space: nowrap;
   background-color: #aaa;
+  position: relative;
+  top: 200px;
 }
 input {
   width: 30px;

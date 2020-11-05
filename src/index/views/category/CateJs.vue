@@ -24,7 +24,6 @@ export default {
         fb.blogsCollection.where('category','array-contains','JavaScript')  .get().then( querySnapShot =>{
             const queryBlog = []
             querySnapShot.forEach(doc =>{
-                console.log(doc.data());
                 const mydata = doc.data()
                 mydata.id = doc.id
                 queryBlog.push(mydata)

@@ -10,7 +10,8 @@
         </h2>
         <div class="title1">
           Posted On
-          <div class="time">{{ blog.createdOn.seconds | day }}</div>
+          <div class="time">{{ blog.createdOn | day }}</div>
+            | UpDateOn <div class="time">{{ blog.updateOn | day }}</div>
         </div>
         <article  class="markdown-body" v-html="$options.filters.msg(blog.contextvalue)"></article>
         <button class="but1">
@@ -35,6 +36,8 @@ export default {
       // moreblog: "",
       // lastblog: "",
       // defaultData: "preview"
+      up: "",
+      cr: ""
     };
   },
   created() {
@@ -76,39 +79,40 @@ export default {
       if (!val) {
         return "-";
       }
-     var now = new Date(val*1000)
-     var year = now.getFullYear()
-     var month = now.getMonth()+1
-     var day = now.getDate()
-     var time = year + '-' + month + '-' + day
-     return time
+      const x = val.seconds * 1000;
+      var now = new Date(x);
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var day = now.getDate();
+      var time = year + "-" + month + "-" + day;
+      return time;
     },
-    msg(msg){
-        return msg.slice(0,300) + '...'
+    msg(msg) {
+      return msg.slice(0, 300) + "...";
     }
   },
   methods: {
     //加载更多的代码，由于firebase不是基于偏移，所以没法进行分页
     // loadmore() {
-      // fb.usersCollection
-        // .doc("AzzXqCkJ7fQAVsMnTKsvisjYXeh1")
-        // .collection("blogs")
-        // .orderBy("createdOn")
-        // .startAfter(this.lastblog)
-        // .limit(2)
-        // .get()
-        // .then(qunerySnapshot => {
-          // var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
-          // let queryBlog = [];
-          // qunerySnapshot.forEach(doc => {
-            // const mydata = doc.data();  
-            // mydata.id = doc.id;
-            // queryBlog.push(mydata);
-            // this.blogs = queryBlog;
-            // this.blogs.push(...this.moreblog)
-          // });
-          // this.lastblog = lastVisible;
-        // });
+    // fb.usersCollection
+    // .doc("AzzXqCkJ7fQAVsMnTKsvisjYXeh1")
+    // .collection("blogs")
+    // .orderBy("createdOn")
+    // .startAfter(this.lastblog)
+    // .limit(2)
+    // .get()
+    // .then(qunerySnapshot => {
+    // var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
+    // let queryBlog = [];
+    // qunerySnapshot.forEach(doc => {
+    // const mydata = doc.data();
+    // mydata.id = doc.id;
+    // queryBlog.push(mydata);
+    // this.blogs = queryBlog;
+    // this.blogs.push(...this.moreblog)
+    // });
+    // this.lastblog = lastVisible;
+    // });
     // }
   }
 };

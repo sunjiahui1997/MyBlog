@@ -5,7 +5,7 @@
       <div class="boke" v-for="blogs in blog" :key="blogs.title">
   <div>
     <h3>博客标题：{{ blogs.title }}</h3>
-    <div v-html="$options.filters.msg(blogs.contextvalue)"></div>
+    <div v-html="$options.filters.msg(blogs.contextvalue || '')"></div>
   </div>
   <div class="hh">
     <router-link :to="'/backstage/edititem/' + blogs.id">
@@ -41,15 +41,21 @@ export default {
           mydata.id = doc.id;
           queryblog.push(mydata);
           this.blog = queryblog;
-          // this.blogcontext = this.blog.context
         });
       });
+  },
+  computed:{
+    async chuli(){
+      const x = await this.blog.contextvalue
+      console.log(x);
+    }
   },
   filters: {
     simplify(val) {
       return val.slice(1, 45) + "...";
     },
-    msg(msg){
+     msg(msg){
+       
       return msg.slice(0,50)
     }
   },
