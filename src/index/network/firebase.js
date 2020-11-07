@@ -3,7 +3,7 @@ import 'firebase/auth'
 import 'firebase/firestore'
 
 // firebase init
-const firebaseConfig = {  
+const firebaseConfig = {
   apiKey: "AIzaSyCAtI-N8JXKgF6SvxHZj7daPkQ4OJWmZfg",
   authDomain: "mybolg-ff2a2.firebaseapp.com",
   databaseURL: "https://mybolg-ff2a2.firebaseio.com",

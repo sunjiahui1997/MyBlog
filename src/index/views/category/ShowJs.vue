@@ -2,11 +2,11 @@
   <div>
     <div class="blog">
       <div class="title">{{ blog.title }}</div>
-      <div class="time">Post On {{ blog.createdOn | day }} | UpdateOn : {{blog.updateOn | day }}</div>
-      <article
-        class="markdown-body"
-        v-html="blog.contextvalue"
-      ></article>
+      <div class="time">
+        Post On {{ blog.createdOn | day }} | UpdateOn :
+        {{ blog.updateOn | day }}
+      </div>
+      <article class="markdown-body" v-html="blog.contextvalue"></article>
     </div>
   </div>
 </template>
@@ -32,20 +32,20 @@ export default {
         }
       });
   },
-   filters: {
-   day(val) {
-     if (!val) {
-       return "-";
-     }
-       const h = val.seconds * 1000
-  var now = new Date(h);
-  var year = now.getFullYear();
-  var month = now.getMonth() + 1;
-  var day = now.getDate();
-  var time = year + "-" + month + "-" + day;
-  return time;
-   }
- }
+  filters: {
+    day(val) {
+      if (!val) {
+        return "-";
+      }
+      const h = val.seconds * 1000;
+      var now = new Date(h);
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1;
+      var day = now.getDate();
+      var time = year + "-" + month + "-" + day;
+      return time;
+    }
+  }
 };
 </script>
 
@@ -63,7 +63,7 @@ export default {
 }
 .time {
   text-align: center;
-  font-size: 9px;
+  font-size: 12px;
   margin: 10px 0px 30px 0;
 }
 </style>

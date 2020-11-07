@@ -137,14 +137,17 @@ export default {
     };
   },
   created() {
-    fb.commitCollection.orderBy('createdOn','desc').get().then(qunerySnapshot => {
-      const mycomment = [];
-      qunerySnapshot.forEach(doc => {
-        const x = doc.data();
-        mycomment.push(x);
-        this.neirong = mycomment;
+    fb.commitCollection
+      .orderBy("createdOn", "desc")
+      .get()
+      .then(qunerySnapshot => {
+        const mycomment = [];
+        qunerySnapshot.forEach(doc => {
+          const x = doc.data();
+          mycomment.push(x);
+          this.neirong = mycomment;
+        });
       });
-    });
   },
   methods: {
     login() {
@@ -380,16 +383,15 @@ button:hover {
   padding: 10px 20px;
   margin-bottom: 10px;
 }
-.time{
+.time {
   font-size: 12px;
   margin-top: 10px;
   position: relative;
   right: -430px;
 }
-.username{
+.username {
   font-size: 15px;
   margin-bottom: 10px;
   font-weight: 400;
-
 }
 </style>

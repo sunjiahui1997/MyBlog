@@ -11,9 +11,13 @@
         <div class="title1">
           Posted On
           <div class="time">{{ blog.createdOn | day }}</div>
-            | UpDateOn <div class="time">{{ blog.updateOn | day }}</div>
+          | UpDateOn
+          <div class="time">{{ blog.updateOn | day }}</div>
         </div>
-        <article  class="markdown-body" v-html="$options.filters.msg(blog.contextvalue)"></article>
+        <article
+          class="markdown-body"
+          v-html="$options.filters.msg(blog.contextvalue)"
+        ></article>
         <button class="but1">
           <router-link class="but2" :to="'/showblog/' + blog.id"
             >Read More >></router-link
@@ -60,10 +64,10 @@ export default {
       .doc("AzzXqCkJ7fQAVsMnTKsvisjYXeh1")
       .collection("blogs")
       .orderBy("createdOn")
-      // .limit(2)
+      .limit(2)
       .get()
       .then(qunerySnapshot => {
-        // var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
+        var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
         let queryBlog = [];
         qunerySnapshot.forEach(doc => {
           const mydata = doc.data();
@@ -71,7 +75,8 @@ export default {
           queryBlog.push(mydata);
           this.blogs = queryBlog;
         });
-        // this.lastblog = lastVisible;
+        this.lastblog = lastVisible;
+        console.log(lastVisible.documentId);
       });
   },
   filters: {
@@ -156,10 +161,11 @@ export default {
 .time {
   display: inline;
   text-align: center;
-  font-size: 0.3em;
+  font-size: 12px;
   position: relative;
   /* top: -10px; */
   border-bottom: black 1px dashed;
+  cursor: help;
 }
 .but1 {
   margin-top: 20px;
