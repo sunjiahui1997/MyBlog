@@ -115,7 +115,8 @@ export default {
         this.$store.dispatch("signup", {
           email: this.signupForm.email,
           password: this.signupForm.password,
-          name: this.signupForm.name
+          name: this.signupForm.name,
+          date:new Date()
         });
         // alert("注册成功！");
         this.showsignup = true;

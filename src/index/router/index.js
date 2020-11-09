@@ -9,12 +9,8 @@ const About = () => import('../components/content/About')
 const Profile = () => import('../components/content/Profile')
 const Edit = () => import('index/views/editBlog')
 const Showblog = () => import('index/views/Showblog')
-
-const CateVue = () => import('index/views/category/CateVue')
-const ShowVue = () => import('index/views/category/ShowVue')
-
-const CateJs = () => import('index/views/category/CateJs')
-const ShowJs = () => import('index/views/category/ShowJs')
+const Showcate = () => import('index/views/category/Showcate')
+const Show = () => import ('index/views/category/Show')
 
 
 const routes = [{
@@ -28,6 +24,18 @@ const routes = [{
         meta: {
             title: 'category'
         },
+        // children:[{
+        // path:'showcate1/:cate',
+        // component:Showcate
+        // }]
+    },
+    {
+        path: '/showcate/:cate',
+        component: Showcate
+    },
+    {
+        path:'/show/:id',
+        component: Show
     },
     {
         path: '/main',
@@ -54,22 +62,6 @@ const routes = [{
     {
         path: '/edit/:id',
         component: Edit
-    },
-    {
-        path: '/ShowVue/:id',
-        component: ShowVue
-    },
-    {
-        path: '/CateVue',
-        component: CateVue
-    },
-    {
-        path: '/CateJs',
-        component: CateJs
-    },
-    {
-        path: '/ShowJs/:id',
-        component: ShowJs
     },
     {
         path: '/profile',

@@ -13,6 +13,7 @@
           <div class="time">{{ blog.createdOn | day }}</div>
           | UpDateOn
           <div class="time">{{ blog.updateOn | day }}</div>
+          <div class="creat">CreatBy {{blog.userName}}</div>
         </div>
         <article
           class="markdown-body"
@@ -24,6 +25,9 @@
           >
         </button>
       </div>
+      <button v-for="index in num" :key="index" @click="page(index)">
+        {{ index }}
+      </button>
       <!-- <button @click="loadmore">下一页</button> -->
     </div>
   </div>
@@ -37,14 +41,18 @@ export default {
   data() {
     return {
       blogs: "",
+      pageTotal: 1, //总页数
+      rows: 1, //总条数
+      num: 1, //
+      pageNo: 1, //当前页码
+      pageSize: 4 // 条数
       // moreblog: "",
       // lastblog: "",
       // defaultData: "preview"
-      up: "",
-      cr: ""
     };
   },
   created() {
+    //官方的startafter方法，暂时不删除
     // var first = fb.blogsCollection.orderBy('category').limit(2)
 
     // console.log(first);
@@ -60,23 +68,38 @@ export default {
     //   console.log(next);
     // });
 
-    fb.usersCollection
-      .doc("AzzXqCkJ7fQAVsMnTKsvisjYXeh1")
-      .collection("blogs")
-      .orderBy("createdOn")
-      .limit(2)
+    // fb.usersCollection
+    // .doc("AzzXqCkJ7fQAVsMnTKsvisjYXeh1")
+    // .collection("blogs")
+    // .orderBy("createdOn")
+    // .limit(2)
+    // .get()
+    // .then(qunerySnapshot => {
+    // var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
+    // let queryBlog = [];
+    // qunerySnapshot.forEach(doc => {
+    // const mydata = doc.data();
+    // mydata.id = doc.id;
+    // queryBlog.push(mydata);
+    // this.blogs = queryBlog;
+    // });
+    // this.lastblog = lastVisible;
+    // console.log(lastVisible.documentId);
+    // });
+    fb.blogsCollection
+      .orderBy("createdOn", "desc")
+      .limit(1)
       .get()
       .then(qunerySnapshot => {
-        var lastVisible = qunerySnapshot.docs[qunerySnapshot.docs.length - 1];
-        let queryBlog = [];
         qunerySnapshot.forEach(doc => {
-          const mydata = doc.data();
-          mydata.id = doc.id;
-          queryBlog.push(mydata);
-          this.blogs = queryBlog;
+          if (doc.exists) {
+            const id = doc.data().documentId;
+            const x = Math.ceil(id / 3);
+            this.num = x;
+          } else {
+            console.log("Error getting document:", error);
+          }
         });
-        this.lastblog = lastVisible;
-        console.log(lastVisible.documentId);
       });
   },
   filters: {
@@ -119,6 +142,32 @@ export default {
     // this.lastblog = lastVisible;
     // });
     // }
+    getList(index) {
+      this.pageNo = index || this.pageNo;
+      fb.blogsCollection
+        .orderBy("documentId", "asc")
+        .where("documentId", "<=", this.pageSize * index)
+        .where("documentId", ">=", (index - 1) * this.pageSize + 1)
+        .limit(4)
+        .get()
+        .then(querySnapshot => {
+          const queryblog = [];
+          querySnapshot.forEach(doc => {
+            const mydata = doc.data();
+            mydata.id = doc.id;
+            queryblog.push(mydata);
+            console.log(queryblog);
+            this.blogs = queryblog;
+            // console.log(this.docid);
+          });
+        });
+    },
+    page(index) {
+      this.getList(index);
+    }
+  },
+  mounted() {
+    this.getList(1);
   }
 };
 </script>
@@ -186,5 +235,8 @@ export default {
 }
 .but2:hover {
   color: white;
+}
+.creat{
+  padding-top: 6px;
 }
 </style>

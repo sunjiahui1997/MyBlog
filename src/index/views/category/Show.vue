@@ -5,6 +5,7 @@
       <div class="time">
         Post On {{ blog.createdOn | day }} | UpdateOn :
         {{ blog.updateOn | day }}
+        <div class="creat">CreatBy {{blog.userName}}</div>
       </div>
       <article class="markdown-body" v-html="blog.contextvalue"></article>
     </div>
@@ -27,9 +28,7 @@ export default {
       .doc(this.id)
       .get()
       .then(doc => {
-        if (doc.exists) {
-          this.blog = doc.data();
-        }
+        this.blog = doc.data();
       });
   },
   filters: {
@@ -65,5 +64,8 @@ export default {
   text-align: center;
   font-size: 12px;
   margin: 10px 0px 30px 0;
+}
+.creat{
+  margin-top: 6px;
 }
 </style>

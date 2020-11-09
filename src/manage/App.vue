@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <sign-up v-if='logIn' @login='login()' ></sign-up> -->
-    <router-view></router-view>
+    <router-view ></router-view>
   </div>
 </template>
 

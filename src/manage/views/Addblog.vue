@@ -13,45 +13,29 @@
           />
         </div>
         <mavon-editor v-model="blog.context" @change="change"></mavon-editor>
-        <div class="title1">
-          分类:
-          <input
-            type="checkbox"
-            id="Vue"
-            value="Vue"
-            v-model="blog.categories"
-          />
-          <label for="Vue">Vue</label>
-          <input
-            type="checkbox"
-            id="JavaScript"
-            value="JavaScript"
-            v-model="blog.categories"
-          />
-          <label for="JavaScript">JavaScript</label>
-          <input
-            type="checkbox"
-            id="Java"
-            value="Java"
-            v-model="blog.categories"
-          />
-          <label for="Java">Java</label>
-          <input
-            type="checkbox"
-            id="PHP"
-            value="PHP"
-            v-model="blog.categories"
-          />
-          <label for="PHP">PHP</label>
+        <div class="checkbox">
+          <div class="title1">分类 ：</div>
+          <tr v-for="(item, index) in cate" :key="item.name">
+            <td>
+              <input
+                type="checkbox"
+                :id="index"
+                :value="item.name"
+                v-model="blog.categories"
+              />
+            </td>
+            <td>{{ item.name }}</td>
+          </tr>
         </div>
+
         <button class="butcommit" @click.prevent="commitBlog">提交博客</button>
       </div>
+
       <div class="commited" v-if="submmited">
         博客提交成功<button class="butcommit" @click="sub">
           返回
         </button>
       </div>
-      <a href="/manage.html">回到后台主页</a>
     </div>
   </div>
 </template>
@@ -70,13 +54,12 @@ export default {
       },
       html: "",
       submmited: false,
-      docId: 1
+      docId: 1,
+      cate: ""
     };
   },
   created() {
-    fb.usersCollection
-      .doc(fb.auth.currentUser.uid)
-      .collection("blogs")
+    fb.blogsCollection
       .orderBy("createdOn", "desc")
       .limit(1)
       .get()
@@ -85,36 +68,53 @@ export default {
           if (doc.exists) {
             const id = doc.data().documentId;
             this.docId = parseInt(id) + 1;
-            console.log(this.docId);
-          }else{
+          } else {
             console.log("Error getting document:", error);
           }
         });
       });
+    this.getCate();
   },
+
   methods: {
     change(value, render) {
       this.html = render;
       // console.log(this.html);
     },
     commitBlog() {
-      fb.usersCollection
-        .doc(fb.auth.currentUser.uid)
-        .collection("blogs")
+      fb.blogsCollection
+        // .doc(fb.auth.currentUser.uid)
+        // .collection("blogs")
         .add({
           createdOn: new Date(),
           title: this.blog.title,
           context: this.blog.context,
           contextvalue: this.html,
           categories: this.blog.categories,
-          documentId: this.docId
+          documentId: this.docId,
+          userId: fb.auth.currentUser.uid,
+          userName: this.$store.state.userProfile.name
         });
       this.submmited = true;
+      console.log(this.$store.state.userProfile.name);
       // this.blog = "";
-
     },
-    sub(){
-      this.$router.push('/backstage/editblog')
+    sub() {
+      this.$router.push("/backstage/editblog");
+    },
+    getCate() {
+      fb.categoryCollection
+        .orderBy("date")
+        .get()
+        .then(qunerySnapshot => {
+          const a = [];
+          qunerySnapshot.forEach(doc => {
+            a.push(doc.data());
+            // console.log(a);
+            this.cate = a;
+            // console.log(this.cate);
+          });
+        });
     }
   }
 };
@@ -123,7 +123,7 @@ export default {
 <style scoped>
 .context {
   position: relative;
-  top: -99px;
+  top: -60px;
 }
 .editBlog {
   display: inline-block;
@@ -138,13 +138,6 @@ export default {
   margin-left: 30px;
   font-size: 20px;
   /* font-family: 'Times New Roman', Times, serif;   */
-}
-.title1 {
-  display: block;
-  margin-bottom: 20px;
-  margin-left: 30px;
-  margin-top: 30px;
-  font-size: 20px;
 }
 input {
   box-sizing: border-box;
@@ -193,6 +186,20 @@ label {
   padding-right: 5px;
 }
 #nihao {
-  width: 170px;
+  width: 370px;
+  border-radius: 10px;
+  outline: none;
+  padding: 5px 15px;
+  border: 1px gray solid;
+}
+#nihao:focus {
+  border: 1px solid slategray;
+}
+.checkbox {
+  margin-top: 30px;
+  display: flex;
+}
+.title1 {
+  line-height: 3;
 }
 </style>

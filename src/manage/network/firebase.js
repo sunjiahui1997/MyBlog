@@ -24,6 +24,8 @@ const hhh = firebase.firestore.FieldValue
 // collection references
 const usersCollection = db.collection('users')
 const blogsCollection = db.collection('blogs')
+const linksCollection = db.collection('links')
+const categoryCollection = db.collection('category')
 
 // export utils/refs
 export {
@@ -32,4 +34,6 @@ export {
   hhh,
   blogsCollection,
   usersCollection,
+  linksCollection,
+  categoryCollection
 }

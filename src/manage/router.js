@@ -8,12 +8,19 @@ const signup = () => import('./views/Signup')
 const backstage = () => import('./views/Backstage')
 const editblog = () => import('./views/Editblog')
 const edititem = () => import('./views/Edititem')
+const userProfile = () => import('./views/Userprofile')
+const addlink = () => import('./views/Addlink')
+const showlink = () => import('./views/Showlink')
+const editlink = () => import('./views/Editlink')
+const  addcate = () =>  import('./views/Addcate')
+const showcate = () => import('./views/Showcate')
+const editcate = () => import('./views/Editcate')
 
 export default new Router({
   mode: 'history',
   routes: [{
       path: '/manage.html',
-      redirect: '/backstage'
+      redirect: '/signup'
     },
     {
       path: '/addblog',
@@ -26,7 +33,12 @@ export default new Router({
     {
       path: '/backstage',
       component: backstage,
-      children: [{
+      children: [
+        {
+          path:'',
+          redirect:'addblog'
+        },
+        {
           path: 'addblog',
           component: addblog
         },
@@ -37,7 +49,33 @@ export default new Router({
         {
           path: 'edititem/:id',
           component: edititem
-        }
+        },
+        {
+          path:'userprofile',
+          component:userProfile
+        },
+        {
+          path:'addlink',
+          component:addlink,
+        },
+        {
+          path:'showlink',
+          component:showlink
+        },
+        {
+          path:'editlink/:id',
+          component:editlink
+        },
+         {
+           path: 'addcate',
+           component: addcate,
+         }, {
+           path: 'showcate',
+           component: showcate
+         }, {
+           path: 'editcate/:id',
+           component: editcate
+         }
       ]
     }
   ]

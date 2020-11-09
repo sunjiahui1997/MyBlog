@@ -2,17 +2,38 @@
   <div>
     <div class="content-warp">
       <h2 class="title">Categories</h2>
-      <div class="category-title">目前只有2个分类</div>
-      <div><router-link to="/CateVue">Vue</router-link></div>
-      <div><router-link to="/CateJs">JavaScript</router-link></div>
+      <div class="category-title">目前只有{{categories.length}}个分类</div>
+      <div v-for="(item) in categories" :key="item.name">
+        <a><router-link :to="'/showcate/' + item.name">{{item.name}}</router-link></a>
+        <!-- <div>{{item.name}}</div> -->
+      </div>
     </div>
+
   </div>
 </template>
 
 <script>
+import * as fb from "index/network/firebase";
+
 export default {
   data() {
-    return {};
+    return {
+      categories:''
+    };
+  },
+  created() {
+    fb.categoryCollection
+      .orderBy("date")
+      .get()
+      .then(qunerySnapshot => {
+        const x = [];
+        qunerySnapshot.forEach(doc => {
+          // console.log(doc.data());
+          x.push(doc.data());
+          this.categories = x;
+          // console.log(this.categories);
+        });
+      });
   },
   methods: {}
 };

@@ -24,6 +24,8 @@ const usersCollection = db.collection('users')
 const blogsCollection = db.collection('blogs')
 const commitCollection = db.collection('commit')
 const touristCollection = db.collection('tourist')
+const linksCollection = db.collection('links')
+const categoryCollection = db.collection('category')
 
 // export utils/refs
 export {
@@ -33,4 +35,6 @@ export {
   usersCollection,
   commitCollection,
   touristCollection,
+  linksCollection,
+  categoryCollection,
 }

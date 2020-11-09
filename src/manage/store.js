@@ -26,6 +26,9 @@ export default new Vuex.Store({
 
       dispatch('fetchUserProfile', user)
       alert('登录成功')
+      if (router.currentRoute.path === '/signup') {
+        router.push('/backstage')
+      }
     },
     async signup({
       dispatch
@@ -34,7 +37,9 @@ export default new Vuex.Store({
         user
       } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
       await fb.usersCollection.doc(user.uid).set({
-        name: form.name
+        name: form.name,
+        date: form.date,
+        email: form.email
       })
       alert('注册成功！')
       dispatch('fetchUserProfile', user)
@@ -45,9 +50,6 @@ export default new Vuex.Store({
       const userProfile = await fb.usersCollection.doc(user.uid).get()
 
       commit('setUserProfile', userProfile.data())
-      if (router.currentRoute.path === '/signup') {
-        router.push('/backstage')
-      }
     },
     async logout({
       commit

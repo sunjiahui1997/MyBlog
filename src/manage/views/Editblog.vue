@@ -42,9 +42,9 @@
         </tr>
       </tbody>
     </table>
-    <button v-for="index in num" :key="index" @click="page(index)">
-      {{ index }}
-    </button>
+    <!-- <button v-for="index in num" :key="index" @click="page(index)"> -->
+      <!-- {{ index }} -->
+    <!-- </button> -->
   </div>
 </template>
 
@@ -62,13 +62,12 @@ export default {
       rows: 1, //总条数
       num: 1, //
       pageNo: 1, //当前页码
-      pageSize: 3 // 条数
+      pageSize: 3, // 条数
+      name:this.$store.state.userProfile.name
     };
   },
   created() {
-    fb.usersCollection
-      .doc(fb.auth.currentUser.uid)
-      .collection("blogs")
+    fb.blogsCollection
       .orderBy("createdOn", "desc")
       .limit(1)
       .get()
@@ -107,13 +106,12 @@ export default {
   methods: {
     getList(index) {
       this.pageNo = index || this.pageNo;
-      fb.usersCollection
-        .doc(fb.auth.currentUser.uid)
-        .collection("blogs")
+      fb.blogsCollection
         .orderBy("documentId", "asc")
-        .where("documentId", "<=", this.pageSize * index)
-        .where("documentId", ">=", (index - 1) * this.pageSize + 1)
-        .limit(3)
+        .where('userName' ,'==', this.name)
+        // .where("documentId", "<=", this.pageSize * index)
+        // .where("documentId", ">=", (index - 1) * this.pageSize + 1)
+        // .limit(3)
         .get()
         .then(querySnapshot => {
           const queryblog = [];
@@ -123,16 +121,14 @@ export default {
             queryblog.push(mydata);
             // this.docid = queryblog
             this.blog = queryblog;
-            // console.log(this.docid);
+            console.log(this.blog);
           });
         });
     },
     deletaBlog(id) {
       const r = confirm("确认删除？");
-      if (r == true) {
-        fb.usersCollection
-          .doc(fb.auth.currentUser.uid)
-          .collection("blogs")
+      if (r) {
+        fb.blogsCollection
           .doc(id)
           .delete()
           .then(() => {

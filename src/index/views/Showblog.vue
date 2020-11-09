@@ -5,6 +5,7 @@
       <div class="time">
         Post On {{ blog.createdOn | day }} | UpdateOn :
         {{ blog.updateOn | day }}
+        <div class="creat">CreatBy {{blog.userName}}</div>
       </div>
       <article class="markdown-body" v-html="blog.contextvalue"></article>
     </div>
@@ -25,9 +26,7 @@ export default {
     };
   },
   created() {
-    fb.usersCollection
-      .doc("AzzXqCkJ7fQAVsMnTKsvisjYXeh1")
-      .collection("blogs")
+    fb.blogsCollection
       .doc(this.id)
       .get()
       .then(doc => {
@@ -74,4 +73,7 @@ export default {
 /* .markdown-body{ */
 /* font-size: 14px; */
 /* } */
+.create{
+  margin-top: 6px;
+}
 </style>

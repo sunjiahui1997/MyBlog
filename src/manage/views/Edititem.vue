@@ -44,7 +44,6 @@
           />
           <label for="PHP">PHP</label>
         </div>
-        <div>更改日期：</div>
         <button class="butcommit" @click.prevent="commitBlog">提交更改</button>
       </div>
       <div class="commited" v-if="submmited">
@@ -52,7 +51,7 @@
           返回
         </button>
       </div>
-      <a href="/manage.html">回到后台主页</a>
+
     </div>
   </div>
 </template>
@@ -72,9 +71,7 @@ export default {
     };
   },
   created() {
-    fb.usersCollection
-      .doc(fb.auth.currentUser.uid)
-      .collection("blogs")
+    fb.blogsCollection
       .doc(this.id)
       .get()
       .then(doc => {
@@ -92,9 +89,7 @@ export default {
       // console.log(this.html);
     },
     commitBlog() {
-      fb.usersCollection
-        .doc(fb.auth.currentUser.uid)
-        .collection("blogs")
+      fb.blogsCollection
         .doc(this.id)
         .update({
           title: this.blog.title,
@@ -116,7 +111,7 @@ export default {
 <style scoped>
 .context {
   position: relative;
-  top: -150px;
+  top: -50px;
 }
 .editBlog {
   display: inline-block;
